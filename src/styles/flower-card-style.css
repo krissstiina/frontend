@@ -1,0 +1,63 @@
+.flower-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    transition: box-shadow 0.3s;
+}
+
+.flower-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flower-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.flower-card-header h3 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.flower-card p {
+    margin: 0.5rem 0;
+    color: #34495e;
+}
+
+.flower-card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+    .flower-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .flower-card-header button {
+        width: 100%;
+    }
+    
+    .flower-card-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .flower-card-actions button {
+        width: 100%;
+    }
+}
