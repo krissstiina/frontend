@@ -1,63 +1,105 @@
 .flower-card {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    margin-bottom: 1rem;
+    background-color: #fefefe;
+    border: 1px solid #ccc;
+    padding: 14px;
+    margin-bottom: 22px;
     border-radius: 4px;
-    transition: box-shadow 0.3s;
+    box-shadow: 1px 1px 4px #fefefe;;
+    transition: background-color 0.2s ease;
 }
 
 .flower-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f7f7f7;
 }
 
 .flower-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
+    display: block;
+    margin-bottom: 10px;
 }
 
 .flower-card-header h3 {
-    margin: 0;
-    color: #2c3e50;
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #222;
 }
 
 .flower-card p {
-    margin: 0.5rem 0;
-    color: #34495e;
+    margin: 6px 0;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 .flower-card-actions {
+    margin-top: 12px;
     display: flex;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+button {
+    padding: 5px 10px;
+    border: 1px solid #999;
+    background-color: #eee;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #ddd;
 }
 
 .delete-button {
-    background-color: #e74c3c;
+    background-color: #f88;
+    border-color: #d66;
+    color: white;
 }
 
 .delete-button:hover {
-    background-color: #c0392b;
+    background-color: #e55;
+}
+
+.purchase-section {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.purchase-section input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #aaa;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 3px;
+}
+
+.purchase-section button {
+    padding: 5px 12px;
+    background-color: #3498db;
+    font-size: 13px;
+    border-radius: 3px;
+}
+
+.purchase-section button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 @media (max-width: 768px) {
-    .flower-card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-    
-    .flower-card-header button {
-        width: 100%;
-    }
-    
     .flower-card-actions {
         flex-direction: column;
-        width: 100%;
+        gap: 6px;
     }
-    
-    .flower-card-actions button {
-        width: 100%;
+
+    .purchase-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
     }
 }

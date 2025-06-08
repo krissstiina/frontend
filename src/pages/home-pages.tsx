@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { addToArchive, deleteFlower, findAllFlowers, makeActive } from "../api/flower-api";
+import { addToArchive, deleteFlower, findAllFlowers, makeActive, purchaseFlower } from "../api/flower-api";
 import { CreateFlowerForm } from "../components/widgets/ticket-form";
 import { Flower } from "../entities/flower";
 import { FlowerListWidget } from "../components/widgets/flower-list-widget";
@@ -7,7 +7,8 @@ import { FlowerListWidget } from "../components/widgets/flower-list-widget";
 export const HomePage: FC = () => {
     const [flowers, setFlowers] = useState<Flower[]>([]);
     const [isFetching, setIsFetching] = useState(true);
-    const [delegId, setDeletingId] = useState<number | null>(null);
+    const [deletingId, setDeletingId] = useState<number | null>(null);
+    const [purchasingId, setPurchasingId] = useState<number | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,11 +55,27 @@ export const HomePage: FC = () => {
         }
     };
 
-    const isDeleting = delegId !== null;
+    const handlePurchase = async (flower: Flower, quantity: number) => {
+        if (quantity <= 0 || quantity > flower.quantity) return;
+        
+        setPurchasingId(flower.id);
+        try {
+            await purchaseFlower(flower.id, quantity);
+            handleUpdateFlowers();
+        } catch (error) {
+            console.error("Ошибка при покупке:", error);
+            alert("Не удалось выполнить покупку");
+        } finally {
+            setPurchasingId(null);
+        }
+    };
+
+    const isDeleting = deletingId !== null;
+    const isPurchasing = purchasingId !== null;
 
     return (
         <div className="home-page">
-            <h1>Управление цветами</h1>
+            <h1 className="page-title">Управление цветами</h1>
             
             <div className="content-wrapper">
                 <div className="main-content">
@@ -74,8 +91,10 @@ export const HomePage: FC = () => {
                                 label="Цветы в продаже"
                                 onUpdate={onAddToArchive}
                                 onDelete={onDeleteFlower}
+                                onPurchase={handlePurchase}
                                 buttonText="Добавить в архив"
                                 deleteButtonText={isDeleting ? "Удаление..." : "Удалить"}
+                                isPurchasing={isPurchasing}
                                 flowers={flowers.filter(t => !t.archived)}
                             />
                             <FlowerListWidget

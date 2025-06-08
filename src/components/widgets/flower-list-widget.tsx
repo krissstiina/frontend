@@ -8,8 +8,10 @@ export interface IFlowerListWidgetProps {
     flowers: Flower[];
     onUpdate?: (flower: Flower) => void;
     onDelete?: (flower: Flower) => void;
+    onPurchase?: (flower: Flower, quantity: number) => void;
     buttonText?: string;
     deleteButtonText?: string;
+    isPurchasing?: boolean;
 }
 
 export const FlowerListWidget: FC<IFlowerListWidgetProps> = ({
@@ -17,8 +19,10 @@ export const FlowerListWidget: FC<IFlowerListWidgetProps> = ({
     label,
     onUpdate,
     onDelete,
+    onPurchase,
     buttonText,
-    deleteButtonText
+    deleteButtonText,
+    isPurchasing
 }) => {
     return (
         <div className="flower-list-widget">
@@ -31,8 +35,10 @@ export const FlowerListWidget: FC<IFlowerListWidgetProps> = ({
                         flower={flower}
                         onStateChange={() => onUpdate?.(flower)}
                         onDelete={() => onDelete?.(flower)}
+                        onPurchase={onPurchase ? (quantity) => onPurchase(flower, quantity) : undefined}
                         buttonText={buttonText}
                         deleteButtonText={deleteButtonText}
+                        isPurchasing={isPurchasing}
                         key={flower.id}
                     />
                 ))

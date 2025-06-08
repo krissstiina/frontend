@@ -1,9 +1,6 @@
 export enum FlowerStatus {
-    RESERVED,
-    PREPARED,
-    DELIVERY,
-    SOLD,
-    RETURNED,
+    PREPARED = "Готов к продаже",
+    SOLD = "Продан"
 }
 
 export type Flower = {

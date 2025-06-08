@@ -23,7 +23,7 @@ export const CreateFlowerForm: FC<CreateFlowerFormProps> = ({ onFlowerCreated })
         fetch("/api/flowers/statuses")
             .then(res => res.json())
             .then(setStatuses)
-            .catch(() => setStatuses(["PREPARED", "SOLD", "RESERVED", "DELIVERY", "RETURNED"]));
+            .catch(() => setStatuses(["PREPARED", "SOLD"]));
     }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -81,7 +81,7 @@ export const CreateFlowerForm: FC<CreateFlowerFormProps> = ({ onFlowerCreated })
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="price">Цена (руб.):</label>
+                    <label htmlFor="price">Цена (руб./шт.):</label>
                     <input
                         type="number"
                         id="price"
@@ -118,9 +118,6 @@ export const CreateFlowerForm: FC<CreateFlowerFormProps> = ({ onFlowerCreated })
                             <option key={status} value={status}>
                                 {status === "PREPARED" && "Готов к продаже"}
                                 {status === "SOLD" && "Продан"}
-                                {status === "RESERVED" && "Зарезервирован"}
-                                {status === "DELIVERY" && "Доставка"}
-                                {status === "RETURNED" && "Возврат"}
                             </option>
                         ))}
                     </select>

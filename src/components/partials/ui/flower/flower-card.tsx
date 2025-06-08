@@ -1,23 +1,29 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Flower } from "../../../../entities/flower";
 
 interface FlowerCardProps {
     flower: Flower;
     onStateChange?: () => void;
     onDelete?: () => void;
+    onPurchase?: (quantity: number) => void;
     buttonText?: string;
     deleteButtonText?: string;
     isDeleting?: boolean;
+    isPurchasing?: boolean;
 }
 
 export const FlowerCard: FC<FlowerCardProps> = ({
     flower,
     onStateChange,
     onDelete,
+    onPurchase,
     buttonText,
     deleteButtonText,
-    isDeleting
+    isDeleting,
+    isPurchasing
 }) => {
+    const [purchaseQuantity, setPurchaseQuantity] = useState(1);
+
     return (
         <div className="flower-card">
             <div className="flower-card-header">
@@ -44,6 +50,25 @@ export const FlowerCard: FC<FlowerCardProps> = ({
             <p>Количество: {flower.quantity}</p>
             <p>Статус: {flower.status}</p>
             <p>Архив: {flower.archived ? "Да" : "Нет"}</p>
+            
+            {!flower.archived && flower.quantity > 0 && onPurchase && (
+                <div className="purchase-section">
+                    <input
+                        type="number"
+                        min="1"
+                        max={flower.quantity}
+                        value={purchaseQuantity}
+                        onChange={(e) => setPurchaseQuantity(Number(e.target.value))}
+                        disabled={isPurchasing}
+                    />
+                    <button
+                        onClick={() => onPurchase(purchaseQuantity)}
+                        disabled={isPurchasing || purchaseQuantity < 1 || purchaseQuantity > flower.quantity}
+                    >
+                        {isPurchasing ? 'Покупка...' : 'Купить'}
+                    </button>
+                </div>
+            )}
         </div>
     );
 };
