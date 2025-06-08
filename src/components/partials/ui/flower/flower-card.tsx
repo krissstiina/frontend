@@ -24,6 +24,17 @@ export const FlowerCard: FC<FlowerCardProps> = ({
 }) => {
     const [purchaseQuantity, setPurchaseQuantity] = useState(1);
 
+    const getStatusInRussian = (status: string) => {
+        switch (status) {
+            case "PREPARED":
+                return "Готов к продаже";
+            case "SOLD":
+                return "Продан";
+            default:
+                return status;
+        }
+    };
+
     return (
         <div className="flower-card">
             <div className="flower-card-header">
@@ -48,7 +59,7 @@ export const FlowerCard: FC<FlowerCardProps> = ({
             <p>Цвет: {flower.color}</p>
             <p>Цена: {flower.price} руб.</p>
             <p>Количество: {flower.quantity}</p>
-            <p>Статус: {flower.status}</p>
+            <p>Статус: {getStatusInRussian(flower.status)}</p>
             <p>Архив: {flower.archived ? "Да" : "Нет"}</p>
             
             {!flower.archived && flower.quantity > 0 && onPurchase && (

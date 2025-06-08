@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import { addToArchive, deleteFlower, findAllFlowers, makeActive, purchaseFlower } from "../api/flower-api";
-import { CreateFlowerForm } from "../components/widgets/ticket-form";
+import { CreateFlowerForm } from "../components/widgets/flower-form";
 import { Flower } from "../entities/flower";
 import { FlowerListWidget } from "../components/widgets/flower-list-widget";
+import { Header } from "../components/widgets/header";
 
 export const HomePage: FC = () => {
     const [flowers, setFlowers] = useState<Flower[]>([]);
@@ -75,7 +76,7 @@ export const HomePage: FC = () => {
 
     return (
         <div className="home-page">
-            <h1 className="page-title">Управление цветами</h1>
+            <Header title="Управление цветами" />
             
             <div className="content-wrapper">
                 <div className="main-content">

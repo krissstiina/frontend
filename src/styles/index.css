@@ -70,16 +70,14 @@ button:disabled {
   }
 }
 
-/* 2. Планшеты (481px - 768px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .flower-actions button {
-    padding: 5px 10px;    /* Уменьшенные отступы */
-    font-size: 12px;      /* Меньший размер шрифта */
-    min-width: 100px;     /* Фиксированная минимальная ширина */
-    margin: 2px;          /* Уменьшенные отступы между кнопками */
+    padding: 5px 10px;
+    font-size: 12px;
+    min-width: 100px;
+    margin: 2px;
   }
   
-  /* Специфичные стили для каждой кнопки */
   .btn-archive {
     background-color: #f8f9fa;
     color: #212529;
@@ -91,16 +89,15 @@ button:disabled {
   }
 }
 
-/* 3. Ноутбуки/ПК (769px - 1200px) */
 @media (min-width: 769px) {
   .flower-actions button {
-    padding: 5px 10px;    /* Уменьшенные отступы */
-    font-size: 12px;      /* Меньший размер шрифта */
-    min-width: 100px;     /* Фиксированная минимальная ширина */
-    margin: 2px;          /* Уменьшенные отступы между кнопками */
+    padding: 5px 10px;
+    font-size: 12px;
+    min-width: 100px;
+    margin: 2px;
   }
   
-  /* Специфичные стили для каждой кнопки */
+
   .btn-archive {
     background-color: #f8f9fa;
     color: #212529;
@@ -112,7 +109,7 @@ button:disabled {
   }
 }
 
-/* 4. Широкоформатные мониторы (1201px и больше) */
+
 @media (min-width: 1201px) {
   .home-page {
     max-width: 1400px;

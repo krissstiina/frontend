@@ -123,8 +123,8 @@ export const CreateFlowerForm: FC<CreateFlowerFormProps> = ({ onFlowerCreated })
                     </select>
                 </div>
                 {error && <p className="error-message">{error}</p>}
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     disabled={isSubmitting}
                     className="submit-button"
                 >
